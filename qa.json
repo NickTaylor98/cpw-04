@@ -1,0 +1,22 @@
+[
+   {
+   "quest" : "Dima equals Dmitriy?",
+   "good" : "1"
+   },
+   {
+   "quest" : "1 is more than 2?",
+   "good" : "0"
+   },
+   {
+   "quest" : "Slipknot includes Corey Taylor?",
+   "good" : "1"
+   },
+   {
+   "quest" : "Chester Bennigton is alive?",
+   "good" : "0"
+   },
+   {
+   "quest" : "Tsoy zhiv?",
+   "good" : "1"
+   }
+]

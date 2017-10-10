@@ -24,24 +24,19 @@ const server = net.createServer((client) => {
         else if (data === remoteString)
             client.write(good)
         else {
-            let strings = data.split(' ');
+            const strings = data.split(' ');
+            let file = fs.createReadStream(strings[1]);
+            let secondFile = fs.createWriteStream(strings[2]);
             if (strings[0] === copyString) {
-                let file = fs.createReadStream(strings[1]);
-                let copyFile = fs.createWriteStream(strings[2]);
-                file.pipe(copyFile)
-                //client.write(bad);
+                file.pipe(secondFile);
             }
             else if (strings[0] === encodeString) {
-                let file = fs.createReadStream(strings[1]);
-                let encryptFile = fs.createWriteStream(strings[2]);
                 let cryptoStream = crypto.createCipher(cryptoString, strings[3]);
-                file.pipe(cryptoStream).pipe(encryptFile);
+                file.pipe(cryptoStream).pipe(secondFile);
             }
             else if (strings[0] === decodeString) {
-                let file = fs.createReadStream(strings[1]);
-                let decryptFile = fs.createWriteStream(strings[2]);
                 let cryptoStream = crypto.createDecipher(cryptoString, strings[3]);
-                file.pipe(cryptoStream).pipe(decryptFile);
+                file.pipe(cryptoStream).pipe(secondFile);
             }
         }
     });
